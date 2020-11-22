@@ -21,8 +21,8 @@ class Debug:
 	def function(self, name: str, args: Dict[str, any]) -> None:
 		_args = ''
 		
-		for name, val in args.items():
-			_args += "%s: %s," % (name, val)
+		for _name, _val in args.items():
+			_args += "%s: '%s'," % (_name, _val)
 		
 		_args = _args[:len(_args) - 1]
 		
@@ -52,8 +52,8 @@ class Debug:
 			
 			_args = ''
 			
-			for name, value in args.items():
-				_args += "%s: %s" % (name, value)
+			for _name, _val in args.items():
+				_args += "%s: %s" % (_name, _val)
 				
 			_args = _args[:len(_args) - 1]
 			
