@@ -8,7 +8,7 @@ class Debug:
 		LOG = 'log',
 		ERROR = 'error',
 		FUNCTION = 'function',
-		VARIABLE = 'var',
+		VARIABLE = 'variable',
 		DEBUG = 'debug',
 		PROGRAM = 'result'
 	
@@ -28,7 +28,7 @@ class Debug:
 	def log(self, text: str) -> None:
 		print("[LOG]: %s" % text)
 	
-	def format(self, mode: Formatter, time=False) -> str:
+	def format(self, mode: Formatter, msg: str, time = False) -> str:
 		_mode = mode.value if isinstance(mode.value, str) else mode.value[0]
 		_now = dt.now()
 		_hr = '0%s' % _now.hour if _now.hour < 10 else _now.hour
@@ -38,7 +38,10 @@ class Debug:
 		_return = _time if time else ''
 		_return += ' [%s]' % _mode.upper()
 		
-		return _return
+		return '%s: %s' % (_return, msg)
 		
-s = Debug().format(Debug.Formatter.FUNCTION, True)
-print(s)
+	class Formatted:
+		
+		def variable(self, name: str, value: any) -> None:
+			print(Debug().format(Debug.Formatter.VARIABLE, "'%s' = %s" % (name, value), True))
+			
