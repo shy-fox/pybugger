@@ -6,12 +6,12 @@ from enum import Enum
 from datetime import datetime as dt
 
 class Formatter(Enum):
-		LOG = 'log',
-		ERROR = 'error',
-		FUNCTION = 'function',
-		VARIABLE = 'variable',
-		DEBUG = 'debug',
-		PROGRAM = 'result'
+	LOG = 'log',
+	ERROR = 'error',
+	FUNCTION = 'function',
+	VARIABLE = 'variable',
+	DEBUG = 'debug',
+	PROGRAM = 'result'
 
 class Debug:
 	
