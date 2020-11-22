@@ -9,7 +9,8 @@ d = Debug()
 
 d.variable('d', d)
 ```
-> Result: `[VARIABLE]: 'd' = <__main__.Debug object at HASH_ADDRESS>`
+Result: 
+`[VARIABLE]: 'd' = <__main__.Debug object at HASH_ADDRESS>`
 
 ```py
 d = Debug()
@@ -20,5 +21,8 @@ def foo(msg: str) -> None:
 	
 foo('Hello world')
 ```
-> Result: ```[FUNCTION]: Executed 'foo' with 'msg: 'Hello world'' as arguments.
-Hello World```
+Result:
+```
+[FUNCTION]: Executed 'foo' with 'msg: 'Hello world'' as arguments.
+Hello World
+```
