@@ -2,15 +2,15 @@ from  typing import Dict
 from enum import Enum
 from datetime import datetime as dt
 
-class Debug:
-	
-	class Formatter(Enum):
+class Formatter(Enum):
 		LOG = 'log',
 		ERROR = 'error',
 		FUNCTION = 'function',
 		VARIABLE = 'variable',
 		DEBUG = 'debug',
 		PROGRAM = 'result'
+
+class Debug:
 	
 	def variable(self, name: str, value: any) -> None:
 		print("[VARIABLE]: %s = %s" % (name, value))
@@ -23,7 +23,7 @@ class Debug:
 		
 		_args = _args[:len(_args) - 1]
 		
-		print("[FUNCTION]: Executed '%s' with '%s' as arguments." % (name, _args))
+		print("[FUNCTION]: Executed '%s' with '%s' as arguments." % (name, _args if len(args) > 0 else 'nothing'))
 	
 	def log(self, text: str) -> None:
 		print("[LOG]: %s" % text)
@@ -36,12 +36,25 @@ class Debug:
 		_sec = '0%s' % _now.second if _now.second < 10 else _now.second
 		_time = "%s:%s:%s" %(_hr, _min, _sec)
 		_return = _time if time else ''
-		_return += ' [%s]' % _mode.upper()
+		_return += '%s[%s]' % (' ' if time else '', _mode.upper())
 		
 		return '%s: %s' % (_return, msg)
 		
 	class Formatted:
 		
 		def variable(self, name: str, value: any) -> None:
-			print(Debug().format(Debug.Formatter.VARIABLE, "'%s' = %s" % (name, value), True))
+			print(Debug().format(Formatter.VARIABLE, "'%s' = %s" % (name, value), True))
+		
+		def function(self, name: str, args: Dict[str, any]) -> None:
 			
+			_args = ''
+			
+			for name, value in args.items():
+				_args += "%s: %s" % (name, value)
+				
+			_args = _args[:len(_args) - 1]
+			
+			print(Debug().format(Formatter.FUNCTION, "Executed '%s' with '%s' as arguments." % (name, _args if len(args) > 0 else 'nothing')))
+	
+		def custom(self, prefix: Formatter, msg: any) -> None:
+			print(Debug().format(prefix, msg, True))
