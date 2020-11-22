@@ -9,3 +9,4 @@ d = Debug()
 
 d.variable('d', d)
 ```
+> Result: [VARIABLE]: 'd' = <__main__.Debug object at HASH_ADDRESS>
