@@ -1,4 +1,7 @@
-from  typing import Dict
+# (c) "Shiromi" 2020
+# Python debugger
+
+from typing import Dict
 from enum import Enum
 from datetime import datetime as dt
 
